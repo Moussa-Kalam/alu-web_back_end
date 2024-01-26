@@ -4,12 +4,17 @@ Filter datum logger
 """
 
 import re
+from typing import List
 
-def filter_datum(fields, redaction, message, separator):
+
+def filter_datum(fields: List[str],
+                 redaction: str,
+                 message: str,
+                 separator: str) -> str:
     """
-    returns the log message obfuscated
+    Returns the log message obfuscated
     """
-    for i in fields:
-        message = re.sub(i + "=.*?" + separator,
-                         i + "=" + redaction + separator, message)
+    for field in fields:
+        message = re.sub(field + "=.*?" + separator,
+                         field + "=" + redaction + separator, message)
     return message
