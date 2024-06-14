@@ -32,6 +32,16 @@ class TestGithubOrgClient(unittest.TestCase):
             org._public_repos_url,
             "https://api.github.com/orgs/izzy")
 
+    @patch("client.get_json")
+    def test_public_repos(self, mock):
+        """ Test public repos """
+        mock.return_value = [{"name": "testing"}, {"name": "todo-app"}]
+        with patch.object(GithubOrgClient,
+                          '_public_repos_url',
+                          return_value="https://api.github.com/orgs/izzy"):
+            org = GithubOrgClient("izzy")
+            self.assertEqual(org.public_repos(), ["testing", "todo-app"])
+
 
 if __name__ == '__main__':
     unittest.main()
