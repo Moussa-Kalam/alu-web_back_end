@@ -41,6 +41,16 @@ class TestGithubOrgClient(unittest.TestCase):
                           return_value="https://api.github.com/orgs/izzy"):
             org = GithubOrgClient("izzy")
             self.assertEqual(org.public_repos(), ["testing", "todo-app"])
+            mock.assert_called_once()
+
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False),
+    ])
+    def test_has_license(self, repo, license_key, has):
+        """ Test License """
+        has_license = GithubOrgClient.has_license(repo, license_key)
+        self.assertEqual(has_license, has)
 
 
 if __name__ == '__main__':
