@@ -3,4 +3,4 @@
 ## Learning objectives
 
 - The different between unit and integration tests
-- Common testing patterns such as mocking, parametrizations and fixtures
+- Common testing patterns such as mocking, parameterization and fixtures
