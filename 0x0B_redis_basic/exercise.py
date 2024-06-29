@@ -2,7 +2,20 @@
 """ Redis instance """
 import redis
 import uuid
-from typing import Union
+from typing import Union, Callable
+import functools
+
+
+def count_calls(method: Callable) -> Callable:
+    """ Count calls decorator """
+
+    @functools.wraps(method)
+    def wrapper(self, *args, **kwargs):
+        key = method.__qualname__
+        self._redis.incr(key)
+        return method(self, *args, **kwargs)
+
+    return wrapper
 
 
 class Cache:
