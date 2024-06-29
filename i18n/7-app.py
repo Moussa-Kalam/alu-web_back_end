@@ -65,6 +65,7 @@ def before_request():
     if user:
         g.user = user
 
+
 @babel.timezoneselector
 def get_timezone() -> str:
     "get the timezone and set it as the default timezone"
