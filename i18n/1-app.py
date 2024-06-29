@@ -20,7 +20,7 @@ app.config.from_object(Config)
 
 @app.route('/', methods=['GET'], strict_slashes=False)
 def home():
-    """ Home page """
+    """Home page"""
     return render_template('1-index.html')
 
 
