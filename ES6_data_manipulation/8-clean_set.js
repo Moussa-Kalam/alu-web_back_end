@@ -1,8 +1,8 @@
 export default function cleanSet(set, startString) {
   if (
-    !set 
-    || !startString 
-    || typeof set !== 'object' 
+    !set
+    || !startString
+    || typeof set !== 'object'
     || typeof startString !== 'string'
   ) {
     return '';
